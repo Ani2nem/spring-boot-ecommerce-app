@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,14 +27,19 @@ public class Product {
     private int id;
     
     private String name;
-    private String desc;
+    private String description;
     private String brand;
     private BigDecimal price;
     private String category;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date releaseDate;
-    private Boolean available;
-    private int quantity;
+    private Boolean productAvailable;
+    private int stockQuantity;
 
+    private String imageName;
+    private String imageType;
+    @Lob // larget object
+    private byte[] imageData;
+    
 }
