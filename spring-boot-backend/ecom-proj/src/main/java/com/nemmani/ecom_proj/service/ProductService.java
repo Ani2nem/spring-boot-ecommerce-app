@@ -37,4 +37,19 @@ public class ProductService {
         // saving the product actually - its passed from the frontend and we just save it to the repo.
         return repo.save(product);
     }
+
+    public Product updateProduct(int id, Product product, MultipartFile imageFile) throws IOException {
+        product.setImageData(imageFile.getBytes());
+        product.setImageName(imageFile.getOriginalFilename());
+        product.setImageType(imageFile.getContentType());
+        return repo.save(product);
+    }
+
+    public void deleteProduct(int id) {
+        repo.deleteById(id);
+    }
+
+    public List<Product> searchProducts(String keyword) {
+        return repo.searchProducts(keyword);
+    }
 }
